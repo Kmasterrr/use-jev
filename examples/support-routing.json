@@ -1,0 +1,41 @@
+{
+  "state": "Ticket #4821\n\nWe were charged twice for the March subscription renewal - once on the 3rd and again on the 4th, same amount, same card. The second charge is still showing as pending. Also, ever since the March update the export button spins forever on Safari, but that is less urgent. Please refund the duplicate first.",
+  "questions": {
+    "queue": {
+      "type": "choice",
+      "instructions": "Which single team should own this ticket first?",
+      "criteria": {
+        "billing": "The main ask concerns charges, invoices, refunds, or payment methods.",
+        "technical": "The main ask concerns a product fault, error, or broken behaviour.",
+        "account": "The main ask concerns login, access, seats, or plan changes.",
+        "sales": "The main ask concerns buying, upgrading, or pricing before purchase."
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgently does this ticket need a human response?",
+      "criteria": [
+        "No response needed, informational only",
+        "Routine, can wait for the normal queue",
+        "Elevated, the customer is blocked or out of pocket",
+        "Critical, money or data is actively at risk"
+      ]
+    },
+    "money_at_stake": {
+      "type": "noul",
+      "instructions": "Does this ticket describe the customer losing or being wrongly charged money?",
+      "criteria": {
+        "true": "A charge, refund, or billing error affects what the customer paid.",
+        "false": "No money has moved incorrectly."
+      }
+    },
+    "frustrated": {
+      "type": "noul",
+      "instructions": "Is the customer expressing frustration or anger?",
+      "criteria": {
+        "true": "The tone shows irritation, complaint escalation, or threat to leave.",
+        "false": "The tone is neutral, factual, or friendly."
+      }
+    }
+  }
+}

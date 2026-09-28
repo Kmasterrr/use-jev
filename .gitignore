@@ -1,0 +1,12 @@
+# never commit keys or request payloads
+*.key
+*.dpapi
+secrets/
+request*.json
+!examples/*.json
+.env
+.env.*
+
+node_modules/
+.DS_Store
+Thumbs.db

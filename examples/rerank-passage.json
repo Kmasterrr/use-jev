@@ -1,0 +1,23 @@
+{
+  "state": "QUERY:\nHow do I roll back a failed database migration in production?\n\nCANDIDATE PASSAGE:\nEvery migration ships with a paired down() step. To reverse the most recent batch, run `dbctl migrate:rollback --steps 1` against the target environment. In production, take a snapshot first: `dbctl snapshot create --tag pre-rollback`. Rollbacks that touch a column with live writes require the maintenance window flag, otherwise the command aborts.",
+  "questions": {
+    "relevance": {
+      "type": "score",
+      "instructions": "How well does the candidate passage answer the query? Judge only the passage shown, not what other documents might say.",
+      "criteria": [
+        "Off topic, does not address the query at all",
+        "Same general subject, but does not answer the query",
+        "Partially answers the query, missing key steps or caveats",
+        "Directly and completely answers the query with actionable detail"
+      ]
+    },
+    "self_contained": {
+      "type": "noul",
+      "instructions": "Could a reader act on this passage without opening another document?",
+      "criteria": {
+        "true": "The passage contains the commands or steps needed to proceed.",
+        "false": "The passage points elsewhere or assumes missing context."
+      }
+    }
+  }
+}

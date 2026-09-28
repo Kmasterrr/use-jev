@@ -1,0 +1,33 @@
+{
+  "state": "Subject: Quick question about your video captioning workflow\n\nHi Sam,\n\nI run growth at ClipForge, and we help agencies cut video editing time by 60%. I saw your team publishes about 40 short videos a week. Would you be open to a 15-minute call Thursday to see if we can save your editors a few hours a week? Happy to send a case study first.\n\nBest,\nDana Morris\nClipForge",
+  "questions": {
+    "lead_strength": {
+      "type": "score",
+      "instructions": "How strong a sales lead is this email for the recipient's business?",
+      "criteria": [
+        "Not a lead, spam or irrelevant",
+        "Weak lead, generic pitch",
+        "Moderate lead, relevant but unproven",
+        "Strong lead, specific and clearly relevant"
+      ]
+    },
+    "email_type": {
+      "type": "choice",
+      "instructions": "What kind of email is this?",
+      "criteria": {
+        "cold_outreach": "Unsolicited sales pitch from someone with no prior relationship.",
+        "customer_support": "An existing customer asking for help.",
+        "newsletter": "Bulk content sent to a mailing list.",
+        "personal": "Correspondence between people who know each other."
+      }
+    },
+    "needs_personal_reply": {
+      "type": "noul",
+      "instructions": "Does this email need a personal, human-written reply?",
+      "criteria": {
+        "true": "A real person should respond individually.",
+        "false": "Can be ignored or handled with a template."
+      }
+    }
+  }
+}
