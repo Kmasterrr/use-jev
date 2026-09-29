@@ -311,8 +311,9 @@ Jev scores one pair at a time. Fan out, then sort in code:
 
 ```bash
 for f in candidates/*.json; do
-  node ~/.claude/skills/use-jev/scripts/jev.mjs "$f"
-done | jq -s 'map({file: .route, score: .answers.relevance.score}) | sort_by(-.score)'
+  node ~/.claude/skills/use-jev/scripts/jev.mjs "$f" |
+    jq --arg file "$f" '{file: $file, score: .answers.relevance.score}'
+done | jq -s 'sort_by(-.score)'
 ```
 
 ---

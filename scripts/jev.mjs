@@ -44,7 +44,8 @@ function getKey() {
   const dpapi = join(SECRETS, "openrouter.dpapi");
   if (platform() === "win32" && existsSync(dpapi)) {
     const ps =
-      `$s = Get-Content '${dpapi}' | ConvertTo-SecureString; ` +
+      // Double any apostrophes so paths like C:\Users\O'Brien survive PowerShell quoting.
+      `$s = Get-Content -LiteralPath '${dpapi.replace(/'/g, "''")}' | ConvertTo-SecureString; ` +
       `[Runtime.InteropServices.Marshal]::PtrToStringAuto(` +
       `[Runtime.InteropServices.Marshal]::SecureStringToBSTR($s))`;
     return execFileSync("powershell", ["-NoProfile", "-Command", ps], {
