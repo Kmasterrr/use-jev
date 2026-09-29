@@ -1,5 +1,9 @@
 # use-jev
 
+<p align="center">
+  <img src="docs/overview.webp" width="640" alt="Jev decides. Claude writes. Text state goes in, typed questions (choice, score, noul) are asked, Jev returns a typed answer with a probability, and Claude writes the response. Four patterns: route, detect and gate, score and rank, repeat.">
+</p>
+
 A skill that lets **Claude Code** and **Codex** hand off bounded semantic
 decisions to [Jev](https://docs.typesafe.ai/model-jaggedness/jev-1.13)
 (`typesafe/jev-1.13`), TypeSafe's System One decision model, through OpenRouter.
@@ -49,6 +53,38 @@ actually cost rather than guessing.
 - Unbounded questions with no defined options or rubric levels.
 - As an authority. Jev is a **signal**. It does not grant permissions, override
   policy, or authorise a consequential action on its own.
+
+---
+
+## Benchmark
+
+<p align="center">
+  <img src="docs/benchmark.webp" width="640" alt="Personal benchmark, 30 September 2026: Jev 1.13 was 8.4 times faster and 35 times cheaper per item than Sonnet 5. Full numbers in the table below.">
+</p>
+
+One personal run on 30 September 2026: 60 synthetic items across five tasks,
+every model given the same text and criteria and asked for a JSON decision,
+called through OpenRouter from Australia.
+
+| Model | Accuracy | Median latency | USD per 1,000 items |
+| --- | ---: | ---: | ---: |
+| **Jev 1.13** | **83%** | **267 ms** | **$0.017** |
+| Haiku 4.5 | 85% | 1,137 ms | $0.235 |
+| Sonnet 5 | 87% | 2,242 ms | $0.601 |
+| Opus 5.5 | 82% | 2,348 ms | $1.924 |
+| Sonnet 5 + short explanation | 73% | 2,228 ms | $1.207 |
+
+Jev alone is slightly less accurate than Haiku or Sonnet, but 8.4× faster and
+35× cheaper than Sonnet 5. The useful result is the hybrid: Jev answered 53 of
+the 60 items and the other 7 went to Sonnet 5 for review. That scored **88%**
+at an estimated **$0.090 per 1,000 items**, 85% less than Sonnet alone. This is
+the workflow the skill is built for: Jev decides, and uncertain cases escalate.
+
+**Read these numbers with care.** The dataset is small and was written by the
+author. Accuracy is rounded, and one item is worth about 1.7 points, so the
+hybrid's lead over Sonnet is a single item. Latency includes the network. The
+hybrid cost is estimated from the per-call costs reported, not measured
+separately. Run your own labelled examples before relying on it.
 
 ---
 
@@ -392,6 +428,7 @@ use-jev/
     install.ps1         Copy the skill into ~/.claude/skills (Windows)
     install.sh          Copy the skill into ~/.claude/skills (macOS/Linux)
   examples/             Four runnable request files
+  docs/                 README images
 ```
 
 ## License
